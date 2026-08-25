@@ -1,9 +1,17 @@
 /*
  * Global reset
  *
- * Component-specific styling will live in styled-components.
+ * Component-specific styling lives in styled-components.
  * This file only contains styles that should apply across the entire app.
  */
+
+:root {
+  /* Shared global colors based on the Figma reference. */
+  --color-carbon: #191919;
+  --color-snow: #fffefa;
+  --color-slate: #5f5f5a;
+  --surface-secondary: #f7f2e8;
+}
 
 *,
 *::before,
@@ -24,6 +32,8 @@ html {
 
 body {
   min-height: 100vh;
+  color: var(--color-carbon);
+  background: var(--color-snow);
   font-family: var(--font-geist), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
