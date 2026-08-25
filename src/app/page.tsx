@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header/Header";
+import { Hero } from "@/components/Hero/Hero";
 
 export default function Home() {
   return (
@@ -6,8 +7,7 @@ export default function Home() {
       <Header />
 
       <main>
-        <h1>Okta Quotes</h1>
-        <p>UI Engineer Exercise</p>
+        <Hero />
       </main>
     </>
   );
