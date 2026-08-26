@@ -31,17 +31,12 @@ const PreviewImage = styled.img`
   opacity: 1;
 `;
 
-/*
- * Keep the current positioning unchanged during
- * the refactor. We will correct the Figma preview
- * geometry after the component split is complete.
- */
 const LeftPreviewImage = styled(PreviewImage)`
-  left: 0;
+  left: 52px;
 `;
 
 const RightPreviewImage = styled(PreviewImage)`
-  right: 0;
+  right: 52px;
 `;
 
 export function CarouselPreview({
