@@ -1,232 +1,25 @@
 "use client";
 
-import styled from "styled-components";
-import { colors, radius, spacing } from "@/styles/tokens";
-import { breakpoints } from "@/styles/breakpoints";
+import { HeroContent } from "./HeroContent";
+import { HeroVisual } from "./HeroVisual";
 
-const HeroSection = styled.section`
-  background: ${colors.surfaceSecondary};
-`;
+import {
+  HeroInner,
+  HeroSection,
+} from "./hero.styles";
 
-const HeroInner = styled.div`
-  width: min(100%, 1312px);
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: ${spacing.xl};
-
-  padding: ${spacing.xl} ${spacing.sm};
-
-  @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    padding: 40px 16px;
-    gap: 32px;
-  }
-`;
-
-const HeroContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const Breadcrumb = styled.p`
-  margin: 0 0 ${spacing.sm};
-
-  font-size: 16px;
-  line-height: 24px;
-
-  color: ${colors.carbon};
-`;
-
-const Title = styled.h1`
-  margin: 0;
-  max-width: 600px;
-
-  font-size: 56px;
-  line-height: 64px;
-  font-weight: 400;
-
-  color: ${colors.carbon};
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 40px;
-    line-height: 48px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 32px;
-    line-height: 40px;
-  }
-`;
-
-const Description = styled.p`
-  margin: ${spacing.md} 0 0;
-  max-width: 600px;
-
-  font-size: 24px;
-  line-height: 32px;
-
-  color: ${colors.slate};
-
-  @media (max-width: ${breakpoints.tablet}) {
-    font-size: 20px;
-    line-height: 28px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 16px;
-    line-height: 22px;
-  }
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: ${spacing.sm};
-
-  margin-top: ${spacing.xl};
-
-  @media (max-width: ${breakpoints.tablet}) {
-    flex-direction: column;
-    margin-top: 40px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    margin-top: 32px;
-  }
-`;
-
-const Button = styled.button<{ $variant: "primary" | "secondary" }>`
-  min-height: 64px;
-  padding: 16px 48px;
-
-  border-radius: ${radius.small};
-
-  border: ${({ $variant }) =>
-    $variant === "secondary"
-      ? `1.5px solid ${colors.carbon}`
-      : "1.5px solid transparent"};
-
-  background: ${({ $variant }) =>
-    $variant === "primary" ? colors.carbon : "transparent"};
-
-  color: ${({ $variant }) =>
-    $variant === "primary" ? colors.snow : colors.carbon};
-
-  font-size: 20px;
-  line-height: 32px;
-  font-weight: 500;
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 100%;
-  }
-
-  &:focus-visible {
-    outline: 2px solid ${colors.carbon};
-    outline-offset: 3px;
-  }
-`;
-
-const HeroVisual = styled.div`
-  min-height: 420px;
-
-  display: grid;
-  place-items: center;
-
-  position: relative;
-
-  border-radius: ${radius.large};
-
-  background: linear-gradient(
-    135deg,
-    #f9f6ef 0%,
-    #ece8df 50%,
-    #b8c6ce 100%
-  );
-
-  @media (max-width: ${breakpoints.tablet}) {
-    min-height: 360px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    min-height: 300px;
-  }
-`;
-
-const VisualCard = styled.div`
-  width: min(70%, 280px);
-  min-height: 360px;
-
-  position: relative;
-
-  border-radius: ${radius.small};
-  background: ${colors.snow};
-
-  box-shadow: 0 20px 40px rgba(25, 25, 25, 0.18);
-
-  @media (max-width: ${breakpoints.tablet}) {
-    width: 220px;
-    min-height: 300px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 180px;
-    min-height: 240px;
-  }
-`;
-
-const VisualAccent = styled.div`
-  position: absolute;
-  top: 55%;
-  left: 20%;
-  right: 20%;
-
-  height: 44px;
-
-  border-radius: 999px;
-
-  background: #5066ff;
-  filter: blur(10px);
-`;
-
+/*
+ * Hero is the composition layer.
+ *
+ * Content, visual presentation, and styling
+ * are handled by focused child modules.
+ */
 export function Hero() {
   return (
     <HeroSection>
       <HeroInner>
-        <HeroContent>
-          <Breadcrumb>
-            Platform or Solution › Feature or Page Title
-          </Breadcrumb>
-
-          <Title>Lorem ipsum dolor sit amet consect alora</Title>
-
-          <Description>
-            Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-            ullamco laboris nisi.
-          </Description>
-
-          <ButtonGroup>
-            <Button type="button" $variant="primary">
-              Primary CTA
-            </Button>
-
-            <Button type="button" $variant="secondary">
-              Secondary CTA
-            </Button>
-          </ButtonGroup>
-        </HeroContent>
-
-        <HeroVisual aria-hidden="true">
-          <VisualCard>
-            <VisualAccent />
-          </VisualCard>
-        </HeroVisual>
+        <HeroContent />
+        <HeroVisual />
       </HeroInner>
     </HeroSection>
   );
