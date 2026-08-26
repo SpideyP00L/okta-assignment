@@ -16,7 +16,7 @@ export const Section = styled.section`
 
   background: ${colors.snow};
 
-  padding: 0 32px;
+  padding: 96px 32px 0;
 
   @media (max-width: ${breakpoints.tablet}) {
     padding: 0 16px;
