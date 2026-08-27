@@ -1,19 +1,18 @@
 import {
+  HeroVisualImage,
   HeroVisualWrapper,
-  VisualAccent,
-  VisualCard,
 } from "./hero.styles";
 
 /*
- * Decorative visual shown on the right side
- * of the Hero.
+ * Decorative hero artwork exported directly from Figma.
  */
 export function HeroVisual() {
   return (
     <HeroVisualWrapper aria-hidden="true">
-      <VisualCard>
-        <VisualAccent />
-      </VisualCard>
+      <HeroVisualImage
+        src="/images/hero/hero-visual.svg"
+        alt=""
+      />
     </HeroVisualWrapper>
   );
 }
