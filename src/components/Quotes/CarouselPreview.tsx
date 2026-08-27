@@ -10,15 +10,8 @@ interface CarouselPreviewProps {
 }
 
 /*
- * The exported desktop/tablet SVGs already contain
- * the curved/tapered Figma geometry.
- *
- * Therefore:
- * - do not stretch them to 298px
- * - do not apply clip-path
- * - do not apply masks
- *
- * We simply position the exported artwork correctly.
+ * Desktop/tablet use the exported Figma SVG assets directly.
+ * Mobile switches to the dedicated horizontal preview asset.
  */
 
 const LeftPreview = styled(PreviewCard)`
@@ -42,7 +35,10 @@ const LeftPreview = styled(PreviewCard)`
 
   @media (max-width: ${breakpoints.mobile}) {
     left: 50%;
+    right: auto;
+
     top: 0;
+    bottom: auto;
 
     width: 325px;
     height: 30px;
@@ -51,7 +47,6 @@ const LeftPreview = styled(PreviewCard)`
 
     z-index: 1;
 
-    /* SVG already has the correct shape */
     border-radius: 0;
 
     transform: translateX(-50%);
@@ -78,21 +73,27 @@ const RightPreview = styled(PreviewCard)`
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-  right: auto;
-  left: 0;
-  top: 0;
+    right: auto;
+    left: 50%;
 
-  width: 325px;
-  height: 30px;
+    top: auto;
+    bottom: 0;
 
-  transform: scaleY(-1);
-}
+    width: 325px;
+    height: 30px;
+
+    overflow: hidden;
+
+    z-index: 1;
+
+    border-radius: 0;
+
+    transform: translateX(-50%);
+  }
 `;
 
 /*
  * Desktop left asset:
- *
- * Native export:
  * approximately 60 × 559
  */
 const LeftPreviewImage = styled.img`
@@ -117,10 +118,17 @@ const LeftPreviewImage = styled.img`
 
   @media (max-width: ${breakpoints.mobile}) {
     left: 0;
+    right: auto;
+
     top: 0;
+    bottom: auto;
 
     width: 325px;
     height: 30px;
+
+    max-width: none;
+
+    object-fit: cover;
 
     transform: none;
   }
@@ -128,8 +136,6 @@ const LeftPreviewImage = styled.img`
 
 /*
  * Desktop right asset:
- *
- * Native export:
  * approximately 64 × 558
  */
 const RightPreviewImage = styled.img`
@@ -153,15 +159,25 @@ const RightPreviewImage = styled.img`
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-  right: auto;
-  left: 0;
-  top: 0;
+    right: auto;
+    left: 0;
 
-  width: 325px;
-  height: 30px;
+    top: 0;
+    bottom: auto;
 
-  transform: scaleY(-1);
-}
+    width: 325px;
+    height: 30px;
+
+    max-width: none;
+
+    object-fit: cover;
+
+    /*
+     * Flip only the artwork.
+     * The parent handles bottom positioning.
+     */
+    transform: scaleY(-1);
+  }
 `;
 
 export function CarouselPreview({
