@@ -9,12 +9,30 @@ import {
   WayfindingWrapper,
 } from "./carousel.styles";
 
+interface CarouselNavigationProps {
+  onPrevious: () => void;
+  onNext: () => void;
+}
+
 /*
- * Carousel controls are isolated here so that
- * navigation behaviour can later be added without
- * affecting the quote card or carousel geometry.
+ * CarouselNavigation is responsible only for
+ * presenting the carousel controls.
+ *
+ * The parent owns carousel state and provides
+ * the previous/next behaviour.
+ *
+ * Desktop / tablet:
+ * left  = previous
+ * right = next
+ *
+ * Mobile:
+ * up   = previous
+ * down = next
  */
-export function CarouselNavigation() {
+export function CarouselNavigation({
+  onPrevious,
+  onNext,
+}: CarouselNavigationProps) {
   return (
     <BottomNav>
       <WayfindingWrapper>
@@ -26,14 +44,32 @@ export function CarouselNavigation() {
       </WayfindingWrapper>
 
       <ArrowGroup>
-        <ArrowButton type="button" aria-label="Previous quote">
-          <DesktopArrow aria-hidden="true">←</DesktopArrow>
-          <MobileArrow aria-hidden="true">↑</MobileArrow>
+        <ArrowButton
+          type="button"
+          aria-label="Previous quote"
+          onClick={onPrevious}
+        >
+          <DesktopArrow aria-hidden="true">
+            ←
+          </DesktopArrow>
+
+          <MobileArrow aria-hidden="true">
+            ↑
+          </MobileArrow>
         </ArrowButton>
 
-        <ArrowButton type="button" aria-label="Next quote">
-          <DesktopArrow aria-hidden="true">→</DesktopArrow>
-          <MobileArrow aria-hidden="true">↓</MobileArrow>
+        <ArrowButton
+          type="button"
+          aria-label="Next quote"
+          onClick={onNext}
+        >
+          <DesktopArrow aria-hidden="true">
+            →
+          </DesktopArrow>
+
+          <MobileArrow aria-hidden="true">
+            ↓
+          </MobileArrow>
         </ArrowButton>
       </ArrowGroup>
     </BottomNav>
