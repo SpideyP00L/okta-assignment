@@ -11,10 +11,7 @@ interface QuoteCsvRow {
 }
 
 /**
- * Reads and parses the quotes CSV file on the server.
- *
- * CSV parsing stays on the server so components receive
- * normalized, typed quote objects instead of raw CSV text.
+ * Reads and validates the quotes CSV on the server.
  */
 export function parseQuotes(): Quote[] {
   const filePath = path.join(
