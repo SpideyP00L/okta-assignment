@@ -1,10 +1,10 @@
 // Shared design tokens based on the Figma reference.
 
 export const colors = {
-  carbon: "#191919",
-  snow: "#FFFEFA",
-  slate: "#5F5F5A",
-  surfaceSecondary: "#F7F2E8",
+  carbon: "var(--color-carbon)",
+  snow: "var(--color-snow)",
+  slate: "var(--color-slate)",
+  surfaceSecondary: "var(--surface-secondary)",
 } as const;
 
 export const spacing = {
