@@ -7,12 +7,6 @@ import {
   Title,
 } from "./hero.styles";
 
-/*
- * Text and CTA content for the Hero.
- *
- * Keeping this separate from the visual allows
- * either side of the Hero to change independently.
- */
 export function HeroContent() {
   return (
     <HeroContentWrapper>

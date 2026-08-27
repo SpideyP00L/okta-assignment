@@ -30,21 +30,14 @@ export const HeroInner = styled.div`
 
   gap: 112px;
 
-  padding-inline: 64px;
+  padding-inline: ${spacing.xl};
 
   box-sizing: border-box;
 
   background: ${colors.surfaceSecondary};
 
   /*
-   * Desktop Figma:
-   *
-   * 64px content inset
-   * 600px content
-   * 112px gap
-   * 600px visual
-   * 64px visual inset
-   *
+   * Desktop Figma geometry:
    * 64 + 600 + 112 + 600 + 64 = 1440px
    */
   @media (max-width: ${breakpoints.tablet}) {
@@ -56,7 +49,7 @@ export const HeroInner = styled.div`
 
     padding: 0;
 
-    border-radius: 0 0 24px 24px;
+    border-radius: 0 0 ${radius.large} ${radius.large};
 
     overflow: hidden;
   }
@@ -71,34 +64,18 @@ export const HeroContentWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  /*
-   * Desktop image frame is 548px tall.
-   * Keeping the content area at the same height gives
-   * us the exact two-column Figma composition.
-   */
   min-height: 548px;
 
   @media (max-width: ${breakpoints.tablet}) {
     min-height: 0;
 
-    /*
-     * Existing tablet measurements:
-     * 48px vertical
-     * 64px horizontal
-     */
-    padding: 48px 64px;
+    padding: 48px ${spacing.xl};
 
     box-sizing: border-box;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    /*
-     * Existing mobile content spacing.
-     *
-     * The image frame itself remains full width and
-     * starts immediately after this content block.
-     */
-    padding: 40px 16px;
+    padding: ${spacing.lg} ${spacing.sm};
   }
 `;
 
@@ -161,7 +138,7 @@ export const ButtonGroup = styled.div`
   @media (max-width: ${breakpoints.tablet}) {
     flex-direction: column;
 
-    margin-top: 40px;
+    margin-top: ${spacing.lg};
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -207,16 +184,6 @@ export const Button = styled.button<{
   }
 `;
 
-/*
- * HERO IMAGE FRAME
- *
- * Desktop: 600 × 548
- * Tablet:  full 834 × 560
- * Mobile:  full 390 × 390
- *
- * Tablet/mobile intentionally have no gap between the
- * content block and this frame.
- */
 export const HeroVisualWrapper = styled.div`
   position: relative;
 
@@ -225,24 +192,19 @@ export const HeroVisualWrapper = styled.div`
 
   overflow: hidden;
 
-  background: transparent;
-
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
     height: 560px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 100%;
     height: 390px;
   }
 `;
 
 /*
- * Figma's Placeholder image uses "Fit".
- *
- * contain reproduces that behavior without distorting
- * the exported 600 × 548 artwork at other breakpoints.
+ * The exported Figma artwork fills each responsive
+ * image frame directly.
  */
 export const HeroVisualImage = styled.img`
   display: block;
