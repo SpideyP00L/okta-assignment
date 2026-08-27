@@ -16,12 +16,6 @@ interface CarouselNavigationProps {
   onNext: () => void;
 }
 
-/*
- * CarouselNavigation presents the carousel controls
- * and reflects the active quote in the progress indicator.
- *
- * Quote state remains owned by QuotesSection.
- */
 export function CarouselNavigation({
   activeIndex,
   quoteCount,
@@ -32,7 +26,8 @@ export function CarouselNavigation({
     <BottomNav>
       <WayfindingWrapper>
         <Progress aria-hidden="true">
-          {Array.from({ length: quoteCount }).map(
+          {Array.from(
+            { length: quoteCount },
             (_, index) => (
               <ProgressBar
                 key={index}

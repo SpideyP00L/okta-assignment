@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { colors } from "@/styles/tokens";
 import { breakpoints } from "@/styles/breakpoints";
+import { colors, radius, spacing } from "@/styles/tokens";
 
 export const Section = styled.section`
   width: 100%;
@@ -13,11 +13,11 @@ export const Section = styled.section`
   padding: 96px 32px 0;
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 64px 24px 0;
+    padding: ${spacing.xl} ${spacing.md} 0;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 64px 0 0;
+    padding: ${spacing.xl} 0 0;
 
     overflow: hidden;
   }
@@ -39,15 +39,12 @@ export const Carousel = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     width: min(100%, 834px);
-    height: 628px;
-
-    overflow: visible;
   }
 
   /*
- * Mobile previews are intentionally clipped
- * to the carousel viewport.
- */
+   * Mobile previews are intentionally clipped
+   * to the carousel viewport.
+   */
   @media (max-width: ${breakpoints.mobile}) {
     width: 100%;
     height: 626px;
@@ -60,7 +57,6 @@ export const PreviewCard = styled.div`
   position: absolute;
 
   top: 50%;
-  transform: translateY(-50%);
 
   width: 298px;
   height: 560px;
@@ -69,9 +65,10 @@ export const PreviewCard = styled.div`
 
   z-index: 1;
 
+  transform: translateY(-50%);
+
   @media (max-width: ${breakpoints.tablet}) {
     width: 250px;
-    height: 560px;
   }
 `;
 
@@ -93,21 +90,68 @@ export const MainSlide = styled.div`
 
   overflow: hidden;
 
-  border-radius: 24px;
+  border-radius: ${radius.large};
 
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      rgb(151, 169, 255) 0%,
-      rgb(180, 192, 244) 38%,
-      rgb(214, 220, 239) 68%,
-      rgb(164, 169, 185) 100%
+  /*
+   * Radial fill applied directly to Slide Contents.
+   *
+   * Figma desktop colors:
+   * #788BEB → #FFFEFA
+   */
+  background: radial-gradient(
+    ellipse at 61% 62%,
+    #788beb 0%,
+    #fffefa 84%
+  );
+
+  /*
+   * Accessibility Gradient is a separate decorative
+   * layer inside Slide Contents in Figma.
+   */
+  &::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    background: linear-gradient(
+      to bottom,
+      rgba(25, 25, 25, 0) 0%,
+      rgba(25, 25, 25, 0) 55%,
+      rgba(25, 25, 25, 0.5) 100%
     );
+
+    opacity: 0.6;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
 
   @media (max-width: ${breakpoints.tablet}) {
     width: calc(100% - 128px);
 
-    padding: 32px;
+    background: radial-gradient(
+      ellipse at 57% 60%,
+      #788beb 0%,
+      #fffefa 92%
+    );
+
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(25, 25, 25, 0) 0%,
+        rgba(25, 25, 25, 0) 58%,
+        rgba(25, 25, 25, 0.5) 100%
+      );
+
+      opacity: 1;
+    }
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -116,9 +160,26 @@ export const MainSlide = styled.div`
 
     margin: 30px auto;
 
-    padding: 16px;
+    padding: ${spacing.sm};
 
     border-radius: 16px;
+
+    background: radial-gradient(
+      ellipse at 55% 56%,
+      #788beb 0%,
+      #fffefa 92%
+    );
+
+    &::after {
+      background: linear-gradient(
+        to bottom,
+        rgba(25, 25, 25, 0) 0%,
+        rgba(25, 25, 25, 0) 60%,
+        rgba(25, 25, 25, 0.5) 100%
+      );
+
+      opacity: 0.8;
+    }
   }
 `;
 
@@ -127,7 +188,7 @@ export const TextContentBox = styled.div`
 
   min-height: 200px;
 
-  padding: 32px 24px;
+  padding: 32px ${spacing.md};
 
   box-sizing: border-box;
 
@@ -149,9 +210,9 @@ export const TextContentBox = styled.div`
     width: 100%;
     min-height: 0;
 
-    padding: 24px 16px;
+    padding: ${spacing.md} ${spacing.sm};
 
-    gap: 16px;
+    gap: ${spacing.sm};
   }
 `;
 
@@ -267,9 +328,9 @@ export const ProgressBar = styled.span<{
 
   height: 5px;
 
-  border-radius: 24px;
+  border-radius: ${radius.large};
 
-  background: ${({ $active }) =>
+  background-color: ${({ $active }) =>
     $active
       ? colors.surfaceSecondary
       : "rgba(255, 255, 255, 0.45)"};
@@ -287,7 +348,7 @@ export const ProgressBar = styled.span<{
 
   @media (max-width: ${breakpoints.mobile}) {
     &:not(:last-child) {
-      margin-right: 16px;
+      margin-right: ${spacing.sm};
     }
   }
 `;
@@ -305,8 +366,6 @@ export const ArrowGroup = styled.div`
     height: 90px;
 
     flex-direction: column;
-
-    gap: 10px;
   }
 `;
 

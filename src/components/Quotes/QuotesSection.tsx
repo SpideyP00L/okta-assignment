@@ -18,17 +18,6 @@ interface QuotesSectionProps {
   quotes: Quote[];
 }
 
-/*
- * QuotesSection owns the active carousel state.
- *
- * Navigation loops continuously in both directions:
- *
- * Next:
- * 1 -> 2 -> 3 -> 1
- *
- * Previous:
- * 1 -> 3 -> 2 -> 1
- */
 export function QuotesSection({
   quotes,
 }: QuotesSectionProps) {
@@ -41,8 +30,9 @@ export function QuotesSection({
       return;
     }
 
-    setActiveIndex((currentIndex) =>
-      (currentIndex - 1 + quotes.length) % quotes.length
+    setActiveIndex(
+      (currentIndex) =>
+        (currentIndex - 1 + quotes.length) % quotes.length
     );
   };
 
@@ -51,8 +41,9 @@ export function QuotesSection({
       return;
     }
 
-    setActiveIndex((currentIndex) =>
-      (currentIndex + 1) % quotes.length
+    setActiveIndex(
+      (currentIndex) =>
+        (currentIndex + 1) % quotes.length
     );
   };
 
