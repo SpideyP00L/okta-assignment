@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
 import {
   AccordionAnswer,
@@ -23,11 +23,17 @@ export function FAQItem({
 }: FAQItemProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
+  const id = useId();
+  const buttonId = `${id}-button`;
+  const panelId = `${id}-panel`;
+
   return (
     <AccordionItem>
       <AccordionButton
+        id={buttonId}
         type="button"
         aria-expanded={isOpen}
+        aria-controls={panelId}
         onClick={() => setIsOpen((current) => !current)}
       >
         <AccordionQuestion>{question}</AccordionQuestion>
@@ -37,7 +43,15 @@ export function FAQItem({
         </AccordionIcon>
       </AccordionButton>
 
-      {isOpen && <AccordionAnswer>{answer}</AccordionAnswer>}
+      {isOpen && (
+        <AccordionAnswer
+          id={panelId}
+          role="region"
+          aria-labelledby={buttonId}
+        >
+          {answer}
+        </AccordionAnswer>
+      )}
     </AccordionItem>
   );
 }

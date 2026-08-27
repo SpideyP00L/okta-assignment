@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import { colors } from "@/styles/tokens";
 import { breakpoints } from "@/styles/breakpoints";
+import { colors, spacing } from "@/styles/tokens";
 
 export const FAQSection = styled.section`
   width: 100%;
@@ -13,11 +13,11 @@ export const FAQSection = styled.section`
   background: ${colors.snow};
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 64px 97px 96px;
+    padding: ${spacing.xl} 97px 96px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 64px 16px;
+    padding: ${spacing.xl} ${spacing.sm};
   }
 `;
 
@@ -38,7 +38,7 @@ export const FAQInner = styled.div`
 
     grid-template-columns: 1fr;
 
-    row-gap: 40px;
+    row-gap: ${spacing.lg};
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -52,14 +52,14 @@ export const FAQIntro = styled.div`
   display: flex;
   flex-direction: column;
 
-  gap: 16px;
+  gap: ${spacing.sm};
 
   @media (max-width: ${breakpoints.tablet}) {
     gap: 32px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    gap: 16px;
+    gap: ${spacing.sm};
   }
 `;
 
@@ -98,7 +98,7 @@ export const AccordionItem = styled.div`
 export const AccordionButton = styled.button`
   width: 100%;
 
-  padding: 24px 0;
+  padding: ${spacing.md} 0;
 
   border: 0;
 
@@ -106,10 +106,9 @@ export const AccordionButton = styled.button`
   align-items: flex-start;
   justify-content: space-between;
 
-  gap: 24px;
+  gap: ${spacing.md};
 
   background: transparent;
-
   color: ${colors.carbon};
 
   text-align: left;
@@ -153,7 +152,7 @@ export const AccordionIcon = styled.span`
 `;
 
 export const AccordionAnswer = styled.p`
-  margin: -12px 0 24px;
+  margin: -12px 0 ${spacing.md};
 
   padding-right: 48px;
 
