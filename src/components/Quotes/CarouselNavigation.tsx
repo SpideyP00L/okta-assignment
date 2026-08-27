@@ -10,26 +10,21 @@ import {
 } from "./carousel.styles";
 
 interface CarouselNavigationProps {
+  activeIndex: number;
+  quoteCount: number;
   onPrevious: () => void;
   onNext: () => void;
 }
 
 /*
- * CarouselNavigation is responsible only for
- * presenting the carousel controls.
+ * CarouselNavigation presents the carousel controls
+ * and reflects the active quote in the progress indicator.
  *
- * The parent owns carousel state and provides
- * the previous/next behaviour.
- *
- * Desktop / tablet:
- * left  = previous
- * right = next
- *
- * Mobile:
- * up   = previous
- * down = next
+ * Quote state remains owned by QuotesSection.
  */
 export function CarouselNavigation({
+  activeIndex,
+  quoteCount,
   onPrevious,
   onNext,
 }: CarouselNavigationProps) {
@@ -37,9 +32,14 @@ export function CarouselNavigation({
     <BottomNav>
       <WayfindingWrapper>
         <Progress aria-hidden="true">
-          <ProgressBar $active />
-          <ProgressBar />
-          <ProgressBar />
+          {Array.from({ length: quoteCount }).map(
+            (_, index) => (
+              <ProgressBar
+                key={index}
+                $active={index === activeIndex}
+              />
+            )
+          )}
         </Progress>
       </WayfindingWrapper>
 

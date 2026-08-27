@@ -28,9 +28,6 @@ interface QuotesSectionProps {
  *
  * Previous:
  * 1 -> 3 -> 2 -> 1
- *
- * Presentation remains delegated to the focused
- * child components.
  */
 export function QuotesSection({
   quotes,
@@ -68,6 +65,8 @@ export function QuotesSection({
           <QuoteCard quote={activeQuote} />
 
           <CarouselNavigation
+            activeIndex={activeIndex}
+            quoteCount={quotes.length}
             onPrevious={goToPreviousQuote}
             onNext={goToNextQuote}
           />

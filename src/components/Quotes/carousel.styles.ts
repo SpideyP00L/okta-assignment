@@ -258,7 +258,9 @@ export const Progress = styled.div`
   }
 `;
 
-export const ProgressBar = styled.span<{ $active?: boolean }>`
+export const ProgressBar = styled.span<{
+  $active?: boolean;
+}>`
   display: block;
 
   flex: 1;
@@ -271,6 +273,17 @@ export const ProgressBar = styled.span<{ $active?: boolean }>`
     $active
       ? colors.surfaceSecondary
       : "rgba(255, 255, 255, 0.45)"};
+
+  opacity: ${({ $active }) =>
+    $active ? 1 : 0.65};
+
+  transition:
+    background-color 220ms ease,
+    opacity 220ms ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 
   @media (max-width: ${breakpoints.mobile}) {
     &:not(:last-child) {
