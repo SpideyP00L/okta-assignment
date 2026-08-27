@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { colors } from "@/styles/tokens";
+import { colors, spacing } from "@/styles/tokens";
 
 export const FooterWrapper = styled.footer`
   width: 100%;
@@ -10,7 +10,7 @@ export const FooterWrapper = styled.footer`
   align-items: center;
   justify-content: center;
 
-  padding-block: 24px;
+  padding-block: ${spacing.md};
 
   box-sizing: border-box;
 
