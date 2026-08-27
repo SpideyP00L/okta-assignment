@@ -1,10 +1,44 @@
-/* Global app styles and light-theme color values. */
+/* Global app styles and theme values. */
 
 :root {
   --color-carbon: #191919;
   --color-snow: #fffefa;
   --color-slate: #5f5f5a;
   --surface-secondary: #f7f2e8;
+
+  --page-background: #fffefa;
+  --header-background: #fffefa;
+
+  --carousel-start: #788beb;
+  --carousel-end: #fffefa;
+
+  --carousel-indicator-active: #f7f2e8;
+  --carousel-indicator-inactive: rgba(255, 255, 255, 0.45);
+
+  --theme-button-background: transparent;
+}
+
+html[data-theme="dark"] {
+  --color-carbon: #fffefa;
+  --color-snow: #191919;
+  --color-slate: #fffefa;
+  --surface-secondary: #191919;
+
+  --page-background: #191919;
+  --header-background: #1e1e1e;
+
+  --carousel-start: #ff6217;
+  --carousel-middle: #490186;
+  --carousel-end: #191919;
+
+  --carousel-indicator-active: #191919;
+  --carousel-indicator-inactive: rgba(0, 0, 0, 0.5);
+
+  --theme-button-background: linear-gradient(
+    135deg,
+    #191919 0%,
+    #7f7f7f 100%
+  );
 }
 
 *,
@@ -28,7 +62,7 @@ body {
   min-height: 100vh;
 
   color: var(--color-carbon);
-  background: var(--color-snow);
+  background: var(--page-background);
 
   font-family: var(--font-geist), Arial, Helvetica, sans-serif;
 

@@ -37,6 +37,21 @@ export const HeroInner = styled.div`
   background: ${colors.surfaceSecondary};
 
   /*
+   * Dark mode:
+   * Softer Figma-inspired linear gradient.
+   * Lightest neutral is positioned toward the top-right.
+   */
+  html[data-theme="dark"] & {
+    background: linear-gradient(
+      to top right,
+      #191919 0%,
+      #191919 38%,
+      #302f2c 68%,
+      #6b665f 100%
+    );
+  }
+
+  /*
    * Desktop Figma geometry:
    * 64 + 600 + 112 + 600 + 64 = 1440px
    */
@@ -52,10 +67,30 @@ export const HeroInner = styled.div`
     border-radius: 0 0 ${radius.large} ${radius.large};
 
     overflow: hidden;
+
+    html[data-theme="dark"] & {
+      background: linear-gradient(
+        to top right,
+        #191919 0%,
+        #191919 38%,
+        #302f2c 68%,
+        #6b665f 100%
+      );
+    }
   }
 
   @media (max-width: ${breakpoints.mobile}) {
     border-radius: 0 0 16px 16px;
+
+    html[data-theme="dark"] & {
+      background: linear-gradient(
+        to top right,
+        #191919 0%,
+        #191919 38%,
+        #302f2c 68%,
+        #6b665f 100%
+      );
+    }
   }
 `;
 

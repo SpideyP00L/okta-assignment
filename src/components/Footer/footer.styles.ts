@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
-import { colors, spacing } from "@/styles/tokens";
+import { spacing } from "@/styles/tokens";
 
 export const FooterWrapper = styled.footer`
+  position: relative;
+
   width: 100%;
   height: 68px;
 
@@ -14,7 +16,22 @@ export const FooterWrapper = styled.footer`
 
   box-sizing: border-box;
 
-  background: ${colors.carbon};
+  background: #191919;
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width: min(calc(100% - 32px), 1312px);
+    height: 0.5px;
+
+    background: rgba(255, 254, 250, 0.5);
+
+    transform: translateX(-50%);
+  }
 `;
 
 export const Copyright = styled.p`
@@ -24,8 +41,9 @@ export const Copyright = styled.p`
   line-height: 20px;
   font-weight: 400;
 
-  color: ${colors.snow};
+  color: #fffefa;
 
   text-align: center;
+
   white-space: nowrap;
 `;

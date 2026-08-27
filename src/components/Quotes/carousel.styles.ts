@@ -41,10 +41,6 @@ export const Carousel = styled.div`
     width: min(100%, 834px);
   }
 
-  /*
-   * Mobile previews are intentionally clipped
-   * to the carousel viewport.
-   */
   @media (max-width: ${breakpoints.mobile}) {
     width: 100%;
     height: 626px;
@@ -93,20 +89,16 @@ export const MainSlide = styled.div`
   border-radius: ${radius.large};
 
   /*
-   * Radial fill applied directly to Slide Contents.
-   *
-   * Figma desktop colors:
-   * #788BEB → #FFFEFA
+   * Light-mode radial fill.
    */
   background: radial-gradient(
     ellipse at 61% 62%,
-    #788beb 0%,
-    #fffefa 84%
+    var(--carousel-start) 0%,
+    var(--carousel-end) 84%
   );
 
   /*
-   * Accessibility Gradient is a separate decorative
-   * layer inside Slide Contents in Figma.
+   * Light-mode accessibility gradient.
    */
   &::after {
     content: "";
@@ -133,13 +125,32 @@ export const MainSlide = styled.div`
     z-index: 1;
   }
 
+  /*
+   * Dark desktop carousel.
+   *
+   * Figma:
+   * #FF6217 -> #490186 -> #191919
+   */
+  html[data-theme="dark"] & {
+    background: radial-gradient(
+      ellipse at 61% 62%,
+      var(--carousel-start) 0%,
+      var(--carousel-middle) 62%,
+      var(--carousel-end) 96%
+    );
+
+    &::after {
+      display: none;
+    }
+  }
+
   @media (max-width: ${breakpoints.tablet}) {
     width: calc(100% - 128px);
 
     background: radial-gradient(
       ellipse at 57% 60%,
-      #788beb 0%,
-      #fffefa 92%
+      var(--carousel-start) 0%,
+      var(--carousel-end) 92%
     );
 
     &::after {
@@ -151,6 +162,19 @@ export const MainSlide = styled.div`
       );
 
       opacity: 1;
+    }
+
+    html[data-theme="dark"] & {
+      background: radial-gradient(
+        ellipse at 57% 60%,
+        var(--carousel-start) 0%,
+        var(--carousel-middle) 62%,
+        var(--carousel-end) 96%
+      );
+
+      &::after {
+        display: none;
+      }
     }
   }
 
@@ -166,8 +190,8 @@ export const MainSlide = styled.div`
 
     background: radial-gradient(
       ellipse at 55% 56%,
-      #788beb 0%,
-      #fffefa 92%
+      var(--carousel-start) 0%,
+      var(--carousel-end) 92%
     );
 
     &::after {
@@ -179,6 +203,19 @@ export const MainSlide = styled.div`
       );
 
       opacity: 0.8;
+    }
+
+    html[data-theme="dark"] & {
+      background: radial-gradient(
+        ellipse at 55% 56%,
+        var(--carousel-start) 0%,
+        var(--carousel-middle) 62%,
+        var(--carousel-end) 96%
+      );
+
+      &::after {
+        display: none;
+      }
     }
   }
 `;
@@ -332,11 +369,10 @@ export const ProgressBar = styled.span<{
 
   background-color: ${({ $active }) =>
     $active
-      ? colors.surfaceSecondary
-      : "rgba(255, 255, 255, 0.45)"};
+      ? "var(--carousel-indicator-active)"
+      : "var(--carousel-indicator-inactive)"};
 
-  opacity: ${({ $active }) =>
-    $active ? 1 : 0.65};
+  opacity: ${({ $active }) => ($active ? 1 : 0.65)};
 
   transition:
     background-color 220ms ease,

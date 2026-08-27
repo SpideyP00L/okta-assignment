@@ -5,7 +5,7 @@ import { colors, spacing } from "@/styles/tokens";
 export const HeaderWrapper = styled.header`
   width: 100%;
 
-  background: ${colors.snow};
+  background: var(--header-background);
   color: ${colors.carbon};
 `;
 
@@ -14,6 +14,7 @@ export const HeaderInner = styled.div`
   min-height: 80px;
 
   margin: 0 auto;
+
   padding-inline: ${spacing.sm};
 
   display: flex;
@@ -39,8 +40,12 @@ export const ThemeButton = styled.button`
   border: 0;
   border-radius: ${spacing.xs};
 
-  background: transparent;
-  color: inherit;
+  background: var(--theme-button-background);
+
+  color: ${colors.carbon};
+
+  font-size: 22px;
+  line-height: 1;
 
   &:focus-visible {
     outline: 2px solid ${colors.carbon};
