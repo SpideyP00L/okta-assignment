@@ -1,35 +1,33 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import {
   HeaderInner,
   HeaderWrapper,
   LogoMark,
   ThemeButton,
+  LightThemeIcon,
+  DarkThemeIcon,
 } from "./header.styles";
 
-type Theme = "light" | "dark";
-
 export function Header() {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window === "undefined") {
-      return "light";
-    }
-
-    const savedTheme = window.localStorage.getItem("theme");
-
-    return savedTheme === "dark" ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    document.documentElement.dataset.theme = theme;
-    window.localStorage.setItem("theme", theme);
-  }, [theme]);
-
   const toggleTheme = () => {
-    setTheme((currentTheme) =>
-      currentTheme === "light" ? "dark" : "light"
+    const root = document.documentElement;
+
+    const currentTheme =
+      root.dataset.theme === "dark"
+        ? "dark"
+        : "light";
+
+    const nextTheme =
+      currentTheme === "light"
+        ? "dark"
+        : "light";
+
+    root.dataset.theme = nextTheme;
+
+    localStorage.setItem(
+      "theme",
+      nextTheme
     );
   };
 
@@ -40,15 +38,17 @@ export function Header() {
 
         <ThemeButton
           type="button"
-          aria-label={`Switch to ${
-            theme === "light" ? "dark" : "light"
-          } mode`}
-          title={`Switch to ${
-            theme === "light" ? "dark" : "light"
-          } mode`}
+          aria-label="Toggle color theme"
+          title="Toggle color theme"
           onClick={toggleTheme}
         >
-          {theme === "light" ? "☼" : "☾"}
+          <LightThemeIcon aria-hidden="true">
+            ☼
+          </LightThemeIcon>
+
+          <DarkThemeIcon aria-hidden="true">
+            ☾
+          </DarkThemeIcon>
         </ThemeButton>
       </HeaderInner>
     </HeaderWrapper>

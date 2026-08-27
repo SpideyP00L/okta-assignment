@@ -1,4 +1,19 @@
 import styled from "styled-components";
+export const LightThemeIcon = styled.span`
+  display: block;
+
+  html[data-theme="dark"] & {
+    display: none;
+  }
+`;
+
+export const DarkThemeIcon = styled.span`
+  display: none;
+
+  html[data-theme="dark"] & {
+    display: block;
+  }
+`;
 
 import { colors, spacing } from "@/styles/tokens";
 
