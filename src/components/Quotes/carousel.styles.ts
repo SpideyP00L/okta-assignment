@@ -3,27 +3,23 @@ import styled from "styled-components";
 import { colors } from "@/styles/tokens";
 import { breakpoints } from "@/styles/breakpoints";
 
-/*
- * Shared styled-components for the Quotes carousel.
- *
- * Keeping layout styles here makes the individual
- * carousel components smaller and easier to debug.
- */
-
 export const Section = styled.section`
   width: 100%;
-  overflow: hidden;
+
+  overflow: visible;
 
   background: ${colors.snow};
 
   padding: 96px 32px 0;
 
   @media (max-width: ${breakpoints.tablet}) {
-    padding: 0 16px;
+    padding: 64px 24px 0;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    padding: 0 16px;
+    padding: 64px 0 0;
+
+    overflow: hidden;
   }
 `;
 
@@ -39,18 +35,24 @@ export const Carousel = styled.div`
   align-items: center;
   justify-content: center;
 
-  overflow: hidden;
+  overflow: visible;
 
   @media (max-width: ${breakpoints.tablet}) {
     width: min(100%, 834px);
     height: 628px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    width: 100%;
-    height: auto;
 
     overflow: visible;
+  }
+
+  /*
+ * Mobile previews are intentionally clipped
+ * to the carousel viewport.
+ */
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+    height: 626px;
+
+    overflow: hidden;
   }
 `;
 
@@ -65,17 +67,11 @@ export const PreviewCard = styled.div`
 
   overflow: hidden;
 
-  border-radius: 18px;
-
   z-index: 1;
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 250px;
     height: 560px;
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
   }
 `;
 
@@ -110,12 +106,15 @@ export const MainSlide = styled.div`
 
   @media (max-width: ${breakpoints.tablet}) {
     width: calc(100% - 128px);
+
     padding: 32px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    width: 100%;
+    width: calc(100% - 32px);
     height: 566px;
+
+    margin: 30px auto;
 
     padding: 16px;
 
@@ -326,5 +325,21 @@ export const ArrowButton = styled.button`
   &:focus-visible {
     outline: 2px solid ${colors.carbon};
     outline-offset: 2px;
+  }
+`;
+
+export const DesktopArrow = styled.span`
+  display: inline;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+export const MobileArrow = styled.span`
+  display: none;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: inline;
   }
 `;

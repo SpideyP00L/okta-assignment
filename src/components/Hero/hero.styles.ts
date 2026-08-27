@@ -4,7 +4,19 @@ import { colors, radius, spacing } from "@/styles/tokens";
 import { breakpoints } from "@/styles/breakpoints";
 
 export const HeroSection = styled.section`
+  width: 100%;
+
   background: ${colors.surfaceSecondary};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding-inline: 33px;
+
+    background: ${colors.snow};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding-inline: 0;
+  }
 `;
 
 export const HeroInner = styled.div`
@@ -13,18 +25,33 @@ export const HeroInner = styled.div`
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: ${spacing.xl};
 
-  padding: ${spacing.xl} ${spacing.sm};
+  gap: 64px;
+
+  padding: 64px 16px;
+
+  box-sizing: border-box;
+
+  background: ${colors.surfaceSecondary};
 
   @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+
     grid-template-columns: 1fr;
+
+    padding: 48px 64px;
+
     gap: 40px;
+
+    border-radius: 0 0 24px 24px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
     padding: 40px 16px;
+
     gap: 32px;
+
+    border-radius: 0 0 16px 16px;
   }
 `;
 
