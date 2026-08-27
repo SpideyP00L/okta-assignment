@@ -1,15 +1,9 @@
-// Shared design values taken from the Figma reference.
-// Keeping these values in one place makes the UI easier to
-// maintain and keeps styling consistent across components.
+// Shared design tokens based on the Figma reference.
 
 export const colors = {
   carbon: "#191919",
   snow: "#FFFEFA",
-
-  // Secondary neutral used for less prominent text.
   slate: "#5F5F5A",
-
-  // Warm surface used in the hero section.
   surfaceSecondary: "#F7F2E8",
 } as const;
 
